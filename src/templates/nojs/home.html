@@ -3,11 +3,11 @@
 {% block content %}
 <div class="box">
     <h2>Monero Blockchain Explorer</h2>
-    <form action="/search">
-        <input type="text" 
-               name="q" 
+    <form action="{{ baseUrl }}/search">
+        <input type="text"
+               name="q"
                id="searchInput"
-               placeholder="Search a block height or transaction hash..." 
+               placeholder="Search a block height or transaction hash..."
                required>
         <button type="submit">Search</button>
     </form>
@@ -26,4 +26,3 @@
     {% include "htmx/recent_blocks.html" %}
 </section>
 {% endblock %}
-

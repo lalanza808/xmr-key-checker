@@ -2,21 +2,21 @@
     <h2>Block {{ block.block_header.height.toLocaleString() }}</h2>
     <div style="padding-bottom: 2em">
         {% if block.block_header.height > 0 %}
-        <a class="button" href="/block/{{ block.block_header.height - 1}}">Previous Block</a>
+        <a class="button" href="{{ baseUrl }}/block/{{ block.block_header.height - 1}}">Previous Block</a>
         {% endif %}
         {% if block.block_header.height < current_height - 1 %}
-        <a class="button" href="/block/{{ block.block_header.height + 1}}">Next Block</a>
+        <a class="button" href="{{ baseUrl }}/block/{{ block.block_header.height + 1}}">Next Block</a>
         {% endif %}
     </div>
     <p><strong>Hash</strong>: {{ block.block_header.hash }}</p>
     <p><strong>Mined On</strong>: {{ date }} ({{ block.block_header.timestamp }})</p>
-    <p><strong>Miner Reward TX</strong>: <a href="/tx/{{ block.miner_tx_hash }}">{{ block.miner_tx_hash }}</a></p>
+    <p><strong>Miner Reward TX</strong>: <a href="{{ baseUrl }}/tx/{{ block.miner_tx_hash }}">{{ block.miner_tx_hash }}</a></p>
     <p><strong>Miner Reward</strong>: {{ block.block_header.reward / 1000000000000 }} XMR</p>
     <div style="padding: 12px 0;">
         <h3>Transactions Included ({{ block_json.tx_hashes | length }})</h3>
         <ul>
             {% for tx in block_json.tx_hashes %}
-                <li><a href="/tx/{{ tx }}">{{ tx.slice(0, 8) }}...{{ tx.slice(-8) }}</a></li>
+                <li><a href="{{ baseUrl }}/tx/{{ tx }}">{{ tx.slice(0, 8) }}...{{ tx.slice(-8) }}</a></li>
             {% endfor %}
         </ul>
     </div>

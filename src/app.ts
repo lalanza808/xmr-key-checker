@@ -44,8 +44,10 @@ const n = nunjucks.configure(`${Deno.cwd()}/src/templates`, {});
 const nojs = Deno.env.get("NOJS") === "1";
 const _theme = Deno.env.get("THEME");
 const theme = _theme === "dark" ? "dark": "light"
+const baseUrl = Deno.env.get("BASE_URL") || "";
 
 n.addGlobal("theme", theme);
+n.addGlobal("baseUrl", baseUrl);
 
 if (nojs) {
   console.log("[.] No JS mode detected");
@@ -53,12 +55,29 @@ if (nojs) {
 }
 
 Deno.serve(async (req) => {
-  const url = new URL(req.url);
-
+  let newReq = req;
+  if (baseUrl && req.url.includes(baseUrl)) {
+    const newUrl = req.url.replace(baseUrl, '');
+    newReq = new Request(newUrl, {
+      method: req.method,
+      headers: req.headers,
+      body: req.body,
+    });
+  }
+  const url = new URL(newReq.url);
 
   // static files
   const staticResponse = await serveStatic(url.pathname);
   if (staticResponse) return staticResponse;
+
+  if (baseUrl && new URL(req.url).pathname === "/") {
+    return new Response(null, {
+      status: 302,
+      headers: {
+        "Location": baseUrl
+      }
+    });
+  }
 
   // ------------------------------
   // Dynamic routes
@@ -102,7 +121,7 @@ Deno.serve(async (req) => {
   if (search_route) {
     const urlParams = new URLSearchParams(search_route.search.input);
     const searchQuery: string|null = urlParams.get("q");
-    const res: Response = await getSearchHtml(searchQuery);
+    const res: Response = await getSearchHtml(searchQuery, baseUrl);
     return res;
   }
 

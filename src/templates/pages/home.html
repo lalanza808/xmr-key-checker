@@ -10,11 +10,11 @@
 {% endif %}
 <div class="box">
     <h2>Monero Blockchain Explorer</h2>
-    <form action="/search">
-        <input type="text" 
-               name="q" 
+    <form action="{{ baseUrl }}/search">
+        <input type="text"
+               name="q"
                id="searchInput"
-               placeholder="Search a block height or transaction hash..." 
+               placeholder="Search a block height or transaction hash..."
                required>
         <button type="submit">Search</button>
     </form>
@@ -22,7 +22,7 @@
 </div>
 <section class="box" id="network-info">
     <h2>Network Statistics</h2>
-    <div hx-get="/htmx/network_info" 
+    <div hx-get="{{ baseUrl }}/htmx/network_info"
          hx-trigger="timerEvent"
          hx-swap="innerHTML"
          id="networkInfo">
@@ -31,7 +31,7 @@
 </section>
 <section class="box">
     <h2>Mempool</h2>
-    <div hx-get="/htmx/mempool_summary" 
+    <div hx-get="{{ baseUrl }}/htmx/mempool_summary"
          hx-trigger="timerEvent"
          hx-swap="innerHTML"
          id="mempoolSummary">
@@ -40,7 +40,7 @@
 </section>
 <section class="box">
     <h2>Recent Blocks</h2>
-    <div hx-get="/htmx/recent_blocks" 
+    <div hx-get="{{ baseUrl }}/htmx/recent_blocks"
          hx-trigger="timerEvent"
          hx-swap="innerHTML"
          id="recentBlocks">
@@ -99,4 +99,3 @@
 </script>
 {% endif %}
 {% endblock %}
-

@@ -3,7 +3,7 @@
 {% block content %}
 <div class="box" style="background-color: rgba(0, 219, 32, .25);">
     <h2>Transaction Receipt</h2>
-    <p><strong>TX Hash</strong>: <a href="/tx/{{ hash }}">{{ hash }}</a></p>
+    <p><strong>TX Hash</strong>: <a href="{{ baseUrl }}/tx/{{ hash }}">{{ hash }}</a></p>
     <p><strong>Confirmations</strong>: {{ confirmations }}</p>
     <p><strong>Amount Sent</strong>: {{ amount }} XMR</p>
     <p><strong>Recipient</strong>: {{ address }}</p>

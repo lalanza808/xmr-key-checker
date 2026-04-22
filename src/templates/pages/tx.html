@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div hx-get="/htmx/tx/{{ hash }}" 
+<div hx-get="{{ baseUrl }}/htmx/tx/{{ hash }}"
         hx-trigger="load"
         hx-swap="innerHTML">
     <p class="loading">Loading transaction info...</p>

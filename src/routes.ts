@@ -74,7 +74,7 @@ export async function getTxReceiptHtml(id: string, address: string, txkey: strin
     }
 }
 
-export async function getSearchHtml(searchQuery: string|null): Promise<Response> {
+export async function getSearchHtml(searchQuery: string|null, baseUrl: string): Promise<Response> {
     const currentInfo = NodeService.getCache("get_info");
     if (Number.isFinite(Number(searchQuery))) {
         if (Number(searchQuery) >= Number(currentInfo.result.height)) {
@@ -89,7 +89,7 @@ export async function getSearchHtml(searchQuery: string|null): Promise<Response>
             return new Response(null, {
                 status: 302,
                 headers: {
-                    Location: `/block/${searchQuery}`
+                    Location: `${baseUrl}/block/${searchQuery}`
                 }
             })
         }
@@ -98,7 +98,7 @@ export async function getSearchHtml(searchQuery: string|null): Promise<Response>
         return new Response(null, {
             status: 302,
             headers: {
-                Location: `/tx/${searchQuery}`
+                Location: `${baseUrl}/tx/${searchQuery}`
             }
         })
     }

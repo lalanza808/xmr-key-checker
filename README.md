@@ -21,6 +21,7 @@ The below environment variables can be set to change some functionality.
 | `NODE` | URL of a local or remote node to use. A local node is recommended for performance and security. | `NODE=http://localhost:18081` | A list of nodes at [nodes.json](./nodes.json) will be used and picked from randomly on each request. This config option overrides that to use just one. |
 | `NOJS` | Disable JavaScript in the browser. Page loads will be slower as nodes are queried for data first. | `NOJS=1` | Javascript will be used to update pages with data from the backend. Set to any other value to disregard.  |
 | `THEME` | Specify light or dark mode themes. Mainly set when NOJS is enabled. | `THEME=light` / `THEME=dark` | The default theme is light mode. If JavaScript is enabled (the default) then visitors can specify their own theme preference. |
+| `BASE_URL` | Specify a base URL path if you are running this behind a reverse proxy with a subpath. | `BASE_URL=/explorer` | The application will be served from the root path. |
 
 Examples:
 
@@ -32,6 +33,7 @@ NOJS=1 NODE=https://node.sethforprivacy.com deno run start # no js, remote node
 # docker
 docker run --rm -it -p 8000:8000 --env NODE=http://monerod:18081 lalanza808/moneroexplorer # js, local docker node
 docker run --rm -it -p 8000:8000 --env NODE=https://xmr.hexide.com --env NOJS=1 --env THEME=dark lalanza808/moneroexplorer # no js, remote node, dark theme
+docker run --rm -it -p 8000:8000 --env BASE_URL=/explorer lalanza808/moneroexplorer # run with a base url
 ```
 ### With Deno
 
