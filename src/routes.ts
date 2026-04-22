@@ -3,13 +3,13 @@ import nunjucks from "nunjucks";
 
 import { NodeService } from "./services/NodeService.ts"
 import { WalletService } from "./services/WalletService.ts";
-import { 
+import {
   Mempool,
   MempoolTx,
-  Block, 
-  Network, 
-  Transaction, 
-  CheckTxKey 
+  Block,
+  Network,
+  Transaction,
+  CheckTxKey
 } from "./types.ts";
 
 export async function getTxHtml(id: string, template: string): Promise<string> {
@@ -181,15 +181,15 @@ export async function getMempool(): Promise<Mempool> {
 export async function serveStatic(pathname: string): Promise<Response | null> {
   try {
     // Handle public static files
-    if (pathname.startsWith("/css/") || 
-        pathname.startsWith("/js/") || 
-        pathname.startsWith("/images/") || 
+    if (pathname.startsWith("/css/") ||
+        pathname.startsWith("/js/") ||
+        pathname.startsWith("/images/") ||
         pathname.startsWith("/fonts/") ||
         pathname === "/favicon.ico" ||
         pathname === "/robots.txt") {
-      
+
       const filePath = `./public${pathname}`;
-      
+
       // Determine content type
       let contentType = "text/plain";
       if (pathname.endsWith(".css")) contentType = "text/css";
@@ -206,7 +206,7 @@ export async function serveStatic(pathname: string): Promise<Response | null> {
       else if (pathname.endsWith(".eot")) contentType = "application/vnd.ms-fontobject";
       else if (pathname.endsWith(".txt")) contentType = "text/plain";
       else if (pathname.endsWith(".json")) contentType = "application/json";
-      
+
       // For binary files (images, fonts), read as binary
       if (contentType.startsWith("image/") || contentType.startsWith("font/") || contentType === "application/vnd.ms-fontobject") {
         const file = await Deno.readFile(filePath);

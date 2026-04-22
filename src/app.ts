@@ -2,8 +2,8 @@ import nunjucks from "nunjucks";
 
 import { WalletService } from "./services/WalletService.ts";
 
-import { 
-  getTxHtml, 
+import {
+  getTxHtml,
   getBlockHtml,
   getTxReceiptHtml,
   getSearchHtml,
@@ -137,7 +137,7 @@ Deno.serve(async (req) => {
   // ------------------------------
   // HTMX routes
   //
-  // These routes render fractional HTML snippets 
+  // These routes render fractional HTML snippets
   // and load them into the page via HTMX javascript
   // They will not be available if user provides NOJS env var
 
