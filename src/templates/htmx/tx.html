@@ -60,7 +60,7 @@
 </div>
 <div class="box">
     <h2>Prove Sending</h2>
-    <form action="/receipt/{{ hash }}">
+    <form action="{{ baseUrl }}/receipt/{{ hash }}">
         <input type="text" name="address" placeholder="Recipient address" required>
         <input type="text" name="txkey" placeholder="Secret TX key" required>
         <input type="text" name="details" placeholder="Optional: TX description or details">
