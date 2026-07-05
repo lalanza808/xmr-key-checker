@@ -52,7 +52,7 @@ if (nojs) {
   n.addGlobal("nojs", true);
 }
 
-Deno.serve(async (req) => {
+Deno.serve({port: Deno.env.get("PORT")}, async (req) => {
   const url = new URL(req.url);
 
 

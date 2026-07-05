@@ -18,6 +18,7 @@ The below environment variables can be set to change some functionality.
 
 | Variable | Description | Example | Default Functionality |
 |-|-|-|-|
+| `PORT` | Port to use for serving web requests. | `PORT=8888` | Port 8000 | 
 | `NODE` | URL of a local or remote node to use. A local node is recommended for performance and security. | `NODE=http://localhost:18081` | A list of nodes at [nodes.json](./nodes.json) will be used and picked from randomly on each request. This config option overrides that to use just one. |
 | `NOJS` | Disable JavaScript in the browser. Page loads will be slower as nodes are queried for data first. | `NOJS=1` | Javascript will be used to update pages with data from the backend. Set to any other value to disregard.  |
 | `THEME` | Specify light or dark mode themes. Mainly set when NOJS is enabled. | `THEME=light` / `THEME=dark` | The default theme is light mode. If JavaScript is enabled (the default) then visitors can specify their own theme preference. |
